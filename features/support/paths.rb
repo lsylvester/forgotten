@@ -10,9 +10,8 @@ module NavigationHelpers
     
     when /the home\s?page/
       '/'
-    when /the new frooble page/
-      new_frooble_path
-
+    when /the persons page/
+      person_path(Person.first)
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
