@@ -14,16 +14,16 @@
   %ul  
     - @person.reminders.upcoming.each do |reminder|
       %li
-        = reminder.send_at
-        = reminder.message
+        = h reminder.send_at
+        = h reminder.message
 
 .past_reminders
   %h2 Past Reminders
   %ul  
     - @person.reminders.past.each do |reminder|
       %li
-        = reminder.send_at
-        = reminder.message
+        = h reminder.send_at
+        = h reminder.message
       
 %h2 Create a new reminder
 - form_for [@person, @reminder] do |form|
