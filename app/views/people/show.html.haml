@@ -1,3 +1,4 @@
+%h1 Personal Details
 %dl
   %dt Name
   %dd= h @person.name
@@ -11,7 +12,7 @@
 .upcoming_reminders
   %h2 Upcoming Reminders
   %ul  
-    - @upcoming_reminders.each do |reminder|
+    - @person.reminders.upcoming.each do |reminder|
       %li
         = reminder.send_at
         = reminder.message
@@ -19,7 +20,7 @@
 .past_reminders
   %h2 Past Reminders
   %ul  
-    - @past_reminders.each do |reminder|
+    - @person.reminders.past.each do |reminder|
       %li
         = reminder.send_at
         = reminder.message
