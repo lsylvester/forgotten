@@ -1,37 +1,40 @@
-%h1 Personal Details
-%dl
-  %dt Name
-  %dd= h @person.name
-  %dt Email
-  %dd= h @person.email
-  %dt Phone Number
-  %dd= h @person.phone_number
-  %dt Payroll Number
-  %dd= h @person.payroll_number
-
+%h1 My Reminders
+.main
+  .personal_details
+    %h2= h @person.name
+    = mail_to h(@person.email)
+    %dl
+      %dt Phone Number
+      %dd= h @person.phone_number
+      %dt Payroll Number
+      %dd= h @person.payroll_number
+  %h2 Create a new reminder
+  - form_for [@person, @reminder] do |form|
+    .field.message
+      = form.label :message
+      = form.text_area :message, :rows => 15, :cols => 50
+    .field.send_at
+      = form.label :send_at, "When should the reminder be sent?"
+      .datepicker
+        = form.date_select :send_at
+      .timepicker
+        at 
+        = form.time_select :send_at,{:minute_step => 5}
+      
+    .actions
+      = form.submit "Create Reminder"
 .upcoming_reminders
   %h2 Upcoming Reminders
   %ul  
     - @person.reminders.upcoming.each do |reminder|
       %li
-        = h reminder.send_at
-        = h reminder.message
+        %p= h reminder.message
+        .delivery to be sent at #{l reminder.send_at}
 
 .past_reminders
   %h2 Past Reminders
   %ul  
     - @person.reminders.past.each do |reminder|
       %li
-        = h reminder.send_at
-        = h reminder.message
-      
-%h2 Create a new reminder
-- form_for [@person, @reminder] do |form|
-  .field
-    = form.label :message
-    = form.text_area :message
-  .field 
-    = form.label :send_at
-    = form.datetime_select :send_at
-  .actions
-    = form.submit
+        %p= h reminder.message
+        .delivery was sent at #{l reminder.send_at}

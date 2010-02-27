@@ -1,6 +1,9 @@
 !!!
 %html
   %head
-    = stylesheet_link_tag 'application'
+    %title My Reminders
+    = stylesheet_link_tag 'application', 'ui-lightness/jquery-ui-1.7.2.custom'
+    = javascript_include_tag 'jquery-1.3.2.min', 'jquery-ui-1.7.2.custom.min', 'application'
   %body
-    = yield
+    .container
+      = yield

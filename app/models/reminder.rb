@@ -1,6 +1,7 @@
 class Reminder < ActiveRecord::Base
   belongs_to :person
-  
+  validates_presence_of :message
+  validate :ensure_it_is_to_be_sent_in_the_future
   named_scope :upcoming, lambda {
     {:conditions => ["send_at > ?", Time.zone.now], :order => "send_at asc"}
   }
@@ -8,4 +9,8 @@ class Reminder < ActiveRecord::Base
   named_scope :past, lambda {
     {:conditions => ["send_at <= ?", Time.zone.now], :order => "send_at desc"}
   }
+  
+  def ensure_it_is_to_be_sent_in_the_future
+    errors.add('send_at', "must be in the future") unless send_at.future?
+  end
 end
