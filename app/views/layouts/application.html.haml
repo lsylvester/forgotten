@@ -6,4 +6,6 @@
     = javascript_include_tag 'jquery-1.3.2.min', 'jquery-ui-1.7.2.custom.min', 'application'
   %body
     .container
+      - if flash[:notice]
+        .notice= h flash[:notice]
       = yield
