@@ -12,3 +12,6 @@ en:
       template: 
         header: 
           "Your {{model}} could not be saved" 
+      messages:
+        not_future: "{{model}} must be sent in the future"
+

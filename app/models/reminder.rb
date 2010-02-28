@@ -14,6 +14,6 @@ class Reminder < ActiveRecord::Base
   }
   
   def ensure_it_is_to_be_sent_in_the_future
-    errors.add('send_at', "must be in the future") unless send_at.future?
+    errors.add_to_base(errors.generate_message(:send_at, :not_future)) unless send_at.future?
   end
 end
