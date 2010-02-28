@@ -15,9 +15,8 @@
       = form.label :message
       = form.text_area :message, :rows => 15, :cols => 50
     .field.send_at
-      = form.label :send_at, "When should the reminder be sent?"
+      %label When should the reminder be sent?
       .datepicker
-        =# form.date_select :send_at
       .timepicker
         at 
         = form.time_select :send_at,{:minute_step => 5}
