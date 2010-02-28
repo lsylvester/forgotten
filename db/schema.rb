@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100228032426) do
+ActiveRecord::Schema.define(:version => 20100228052308) do
 
   create_table "people", :force => true do |t|
     t.string   "name"
@@ -21,13 +21,17 @@ ActiveRecord::Schema.define(:version => 20100228032426) do
     t.string   "slug"
   end
 
+  add_index "people", ["slug"], :name => "index_people_on_slug"
+
   create_table "reminders", :force => true do |t|
     t.integer  "person_id"
     t.text     "message"
     t.datetime "send_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "delivery_method"
   end
+
+  add_index "reminders", ["person_id"], :name => "index_reminders_on_person_id"
+  add_index "reminders", ["send_at"], :name => "index_reminders_on_send_at"
 
 end

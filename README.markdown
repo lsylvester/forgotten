@@ -9,3 +9,5 @@ Staff are provided a unique url that displays the staff details (name, payroll n
 Staff can look at reminders that have already been sent or up-coming reminders.  Please design and implement a single UI page rails solution that incorporates the above requirements.
 
 The solution needs to record data into a database but does not need to implement security, email or SMS functionality.
+
+
