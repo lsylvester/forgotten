@@ -1,9 +1,9 @@
 class RemindersController < ApplicationController
   def create
-    @person = Person.find(params[:person_id])
+    @person = Person.find_by_slug!(params[:person_id])
     @reminder = @person.reminders.build(params[:reminder])
     if @reminder.save
-      flash[:notice] = "Reminder was successfully created."
+      flash[:success] = "Reminder was successfully created."
       redirect_to @person
     else
       render 'people/show'

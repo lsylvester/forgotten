@@ -5,8 +5,8 @@ Feature: Reminders
   
   Scenario: Checking Persons Details
     Given the following person:
-      |name|email|phone_number|payroll_number|
-      |Link|link@hyrule.com|+61 405 123 456|987654321|
+      |name|email|phone_number|payroll_number|slug|
+      |Link|link@hyrule.com|+61 405 123 456|987654321|link|
     When I go to the persons page
     Then I should see "Link"
     And I should see "link@hyrule.com"
@@ -15,23 +15,26 @@ Feature: Reminders
     
   Scenario: Creating a reminder
     Given a person
+    And that the time is "Sun Feb 28 11:25:47 +1100 2008"
     When I go to the persons page    
     And I fill in "message" with "Go to buy coffee"
-    And I select "December 25, 2008 10:00" as the date and time
-    And I press "Save"
+    And I fill in "reminder_send_at_1i" with "2009"
+    And I fill in "reminder_send_at_2i" with "11" 
+    And I fill in "reminder_send_at_3i" with "17" 
+    And I select "10:00" as the time
+    And I press "Create Reminder"
     Then I should see "Go to buy coffee"
-    And I should see "2008-12-25 10:00:00 UTC"
-  #   
-  # Scenario: Viewing upcoming reminders
-  #   Given I am a staff member
-  #   And I am on my page
-  #   And I have an upcoming reminder with message "Go to buy coffee"
-  #   Then I should see "Upcoming Reminders"
-  #   And I should see "Go to buy coffee"
-  # 
-  # Scenario: Viewing upcoming reminders
-  #   Given I am a staff member
-  #   And I am on my page
-  #   And I have an send reminder with message "Go to buy coffee"
-  #   Then I should see "Sent Reminders"
-  #   And I should see "Go to buy coffee"
+    And I should see "10:00 am on Tue, 17 Nov 2009"
+    # To do - selecting the date....
+
+  Scenario: Viewing reminders
+    Given a person
+    And that the time is "Sun Feb 28 11:25:47 +1100 2009"
+    And the person has reminders
+      |message| send_at|
+      | Rescue Zelda | "Sun Feb 29 11:00:00 +1100 2009" |
+      | Collect Master Sword | "Sun Feb 27 11:00:00 +1100 2009" |
+    When I go to the persons page
+    Then I should see "Rescue Zelda" within ".upcoming_reminders"
+    And I should see "Collect Master Sword" within ".past_reminders"
+

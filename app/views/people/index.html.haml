@@ -1,0 +1,7 @@
+- if @people.empty?
+  .notice There are currently no staff members in the system. Run <code>rake demo:load</code> to randomly generate staff members
+.staff
+  %h1 Staff Members
+  %ul
+    - @people.each do |person|
+      %li= link_to person.name, person

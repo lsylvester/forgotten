@@ -1,5 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :people, :has_many => :reminders
+  map.root :controller => 'people', :action => 'index'
+  map.person '/:id', :controller => 'people', :action => 'show'
+  
+  map.resources :people, :has_many => :reminders, :collection => {:generate => :post}
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

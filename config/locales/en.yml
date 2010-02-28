@@ -5,5 +5,10 @@ en:
   hello: "Hello world"
   time:
     formats:
-      default: "%H:%M %p on %a, %d %b %y"
+      default: "%H:%M %p on %a, %d %b %Y"
 
+  activerecord: 
+    errors: 
+      template: 
+        header: 
+          "Your {{model}} could not be saved" 

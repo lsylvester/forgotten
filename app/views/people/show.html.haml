@@ -17,25 +17,26 @@
     .field.send_at
       = form.label :send_at, "When should the reminder be sent?"
       .datepicker
-        = form.date_select :send_at
+        =# form.date_select :send_at
       .timepicker
         at 
         = form.time_select :send_at,{:minute_step => 5}
-      
     .actions
       = form.submit "Create Reminder"
-.upcoming_reminders
-  %h2 Upcoming Reminders
-  %ul  
-    - @person.reminders.upcoming.each do |reminder|
-      %li
-        %p= h reminder.message
-        .delivery to be sent at #{l reminder.send_at}
+- unless @person.reminders.upcoming.empty?
+  .upcoming_reminders
+    %h2 Upcoming Reminders
+    %ul  
+      - @person.reminders.upcoming.each do |reminder|
+        %li
+          %p= h reminder.message
+          .delivery to be sent at #{l reminder.send_at}
 
-.past_reminders
-  %h2 Past Reminders
-  %ul  
-    - @person.reminders.past.each do |reminder|
-      %li
-        %p= h reminder.message
-        .delivery was sent at #{l reminder.send_at}
+- unless @person.reminders.past.empty?
+  .past_reminders
+    %h2 Past Reminders
+    %ul  
+      - @person.reminders.past.each do |reminder|
+        %li
+          %p= h reminder.message
+          .delivery was sent at #{l reminder.send_at}
