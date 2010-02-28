@@ -11,3 +11,13 @@ Staff can look at reminders that have already been sent or up-coming reminders.â
 The solution needs to record data into a database but does not need to implement security, email or SMS functionality.
 
 
+To get started
+--------------
+
+run @rake gems:install@ to install required gems.
+
+run @rake db:migrate@ to migrate the database.
+
+run @rake demo:load@ to load some sample data.
+
+Then run @script/server@ and go to http://0.0.0.0:3000
