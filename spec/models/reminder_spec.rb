@@ -5,7 +5,7 @@ describe Reminder do
     @valid_attributes = {
       :person_id => 1,
       :message => "value for message",
-      :send_at => Time.now
+      :send_at => 2.days.from_now
     }
   end
 
