@@ -14,10 +14,10 @@ The solution needs to record data into a database but does not need to implement
 To get started
 --------------
 
-run @rake gems:install@ to install required gems.
+run `rake gems:install` to install required gems.
 
-run @rake db:migrate@ to migrate the database.
+run `rake db:migrate` to migrate the database.
 
-run @rake demo:load@ to load some sample data.
+run `rake demo:load` to load some sample data.
 
-Then run @script/server@ and go to http://0.0.0.0:3000
+Then run `script/server` and go to http://0.0.0.0:3000
